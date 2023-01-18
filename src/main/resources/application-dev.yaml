@@ -1,8 +1,17 @@
 server:
   port: 8081
-spring.datasource:
-  platform: postgres
-  driverClassName: org.postgresql.Driver
-  url: jdbc:postgresql://localhost:5432/contact_manager_db
-  username: postgres
-  password: postgres
+
+spring:
+  datasource:
+    platform: postgres
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/contact_manager_db
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+
+
