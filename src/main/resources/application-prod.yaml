@@ -1,6 +1,6 @@
 spring.datasource:
   platform: postgres
   driverClassName: org.postgresql.Driver
-  url: jdbc:postgresql://localhost:5432/contact_manager_db
+  url: jdbc:postgresql://localhost:5432/contact_manager_prod
   username: postgres
   password: postgres
