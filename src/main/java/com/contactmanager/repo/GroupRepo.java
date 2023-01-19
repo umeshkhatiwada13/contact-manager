@@ -16,6 +16,8 @@ import java.util.UUID;
  * @created 18/01/2023 8:48 PM
  **/
 public interface GroupRepo extends JpaRepository<Group, UUID> {
+    @Override
+    Optional<Group> findById(UUID uuid);
 
     @Query(value = "select Cast(id as varchar) id,name from tbl_group", nativeQuery = true)
     List<GroupProjection> findAllV2();

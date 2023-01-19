@@ -1,6 +1,7 @@
 package com.contactmanager.service;
 
 import com.contactmanager.entity.Contact;
+import com.contactmanager.entity.Group;
 import com.contactmanager.pojo.ContactPojo;
 import com.contactmanager.pojo.ContactProjection;
 import com.contactmanager.pojo.GroupProjection;
@@ -14,5 +15,7 @@ import java.util.UUID;
  **/
 public interface GroupService {
     List<GroupProjection> findAll();
+
+    Group findById(UUID id) throws Exception;
 
 }

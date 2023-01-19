@@ -1,6 +1,7 @@
 package com.contactmanager.service;
 
 import com.contactmanager.entity.Contact;
+import com.contactmanager.entity.Group;
 import com.contactmanager.pojo.ContactPojo;
 import com.contactmanager.pojo.ContactProjection;
 import com.contactmanager.pojo.GroupProjection;
@@ -26,5 +27,14 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public List<GroupProjection> findAll() {
         return groupRepo.findAllV2();
+    }
+
+    @Override
+    public Group findById(UUID id) throws Exception {
+        Optional<Group> groupOptional = groupRepo.findById(id);
+        if (groupOptional.isEmpty()) {
+            throw new Exception();
+        }
+        return groupOptional.get();
     }
 }

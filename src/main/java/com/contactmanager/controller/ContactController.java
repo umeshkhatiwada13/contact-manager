@@ -68,4 +68,19 @@ public class ContactController extends BaseController {
         return ResponseEntity.ok(
                 successResponse(success ? "Data deleted Successfully" : "Something went Wrong", null));
     }
+
+    @GetMapping("find-by-id/{id}")
+    public ResponseEntity<GlobalApiResponse> findById(@PathVariable UUID id) {
+        log.info("Contact Controller : Find by Id {} ",id);
+        boolean success = false;
+        Contact contact = null;
+        try {
+            contact = contactService.findById(id);
+            success = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok(
+                successResponse(success ? "Data fetched successfully" : "Something went Wrong", contact));
+    }
 }
