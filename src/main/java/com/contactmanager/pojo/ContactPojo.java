@@ -13,11 +13,12 @@ import java.util.UUID;
 @Getter
 @Setter
 public class ContactPojo {
-    private UUID id;
+    private String id;
     private String name;
     private String company;
     private String email;
     private String title;
     private String mobile;
     private String photoUrl;
+    private String groupId;
 }

@@ -1,5 +1,6 @@
 package com.contactmanager.entity;
 
+import com.corechoes.base.dto.BaseDTO;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -19,10 +20,10 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Group {
-    @Id
-    @GeneratedValue
-    private UUID id;
+public class Group extends BaseDTO {
+//    @Id
+//    @GeneratedValue
+//    private UUID id;
 
     private String name;
 }

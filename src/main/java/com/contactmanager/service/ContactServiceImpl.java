@@ -1,12 +1,16 @@
 package com.contactmanager.service;
 
 import com.contactmanager.entity.Contact;
+import com.contactmanager.entity.Group;
 import com.contactmanager.pojo.ContactPojo;
 import com.contactmanager.pojo.ContactProjection;
 import com.contactmanager.repo.ContactRepo;
+import com.contactmanager.repo.GroupRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -20,6 +24,7 @@ import java.util.UUID;
 @Service
 public class ContactServiceImpl implements ContactService {
     private final ContactRepo contactRepo;
+    private final GroupRepo groupRepo;
 
     @Override
     public List<ContactProjection> findAll() {
@@ -38,6 +43,8 @@ public class ContactServiceImpl implements ContactService {
                     .mobile(contactPojo.getMobile())
                     .photoUrl(contactPojo.getPhotoUrl())
                     .build();
+            contact.setCreatedBy("SYSTEM");
+            contact.setCreatedDate(LocalDateTime.now());
         } else {
             contact = this.findById(contactPojo.getId());
             contact.setName(contactPojo.getName());
@@ -46,12 +53,18 @@ public class ContactServiceImpl implements ContactService {
             contact.setTitle(contactPojo.getTitle());
             contact.setMobile(contactPojo.getMobile());
             contact.setPhotoUrl(contactPojo.getPhotoUrl());
+            contact.setUpdatedBy("SYSTEM");
+            contact.setUpdatedDate(LocalDateTime.now());
+        }
+        if (StringUtils.hasLength(contactPojo.getGroupId())) {
+            Optional<Group> groupOpt = groupRepo.findById(contactPojo.getGroupId());
+            groupOpt.ifPresent(contact::setGroup);
         }
         contactRepo.save(contact);
     }
 
     @Override
-    public Contact findById(UUID id) throws Exception {
+    public Contact findById(String id) throws Exception {
         Optional<Contact> contactOptional = contactRepo.findById(id);
         if (contactOptional.isEmpty()) {
             throw new Exception();
@@ -60,7 +73,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public void delete(UUID id) throws Exception {
+    public void delete(String id) throws Exception {
         Contact contact = this.findById(id);
         contactRepo.delete(contact);
     }

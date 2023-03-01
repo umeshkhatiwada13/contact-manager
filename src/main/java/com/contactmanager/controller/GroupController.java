@@ -46,7 +46,7 @@ public class GroupController extends BaseController {
     }
 
     @GetMapping("find-by-id/{id}")
-    public ResponseEntity<GlobalApiResponse> findById(@PathVariable UUID id) {
+    public ResponseEntity<GlobalApiResponse> findById(@PathVariable String id) {
         log.info("Contact Controller : Find by Id {} ",id);
         boolean success = false;
         Group group = null;

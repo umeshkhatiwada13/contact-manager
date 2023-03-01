@@ -14,10 +14,10 @@ import java.util.UUID;
  * @author Umeshkhatiwada13
  * @created 18/01/2023 8:48 PM
  **/
-public interface ContactRepo extends JpaRepository<Contact, UUID> {
+public interface ContactRepo extends JpaRepository<Contact, String> {
 
     @Override
-    Optional<Contact> findById(UUID uuid);
+    Optional<Contact> findById(String uuid);
 
     @Query(value = "select Cast(id as varchar) id,company, email, mobile,name, photo_url as photoUrl,title from contact", nativeQuery = true)
     List<ContactProjection> findAllV2();

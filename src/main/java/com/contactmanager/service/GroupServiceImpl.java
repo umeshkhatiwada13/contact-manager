@@ -30,7 +30,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Group findById(UUID id) throws Exception {
+    public Group findById(String id) throws Exception {
         Optional<Group> groupOptional = groupRepo.findById(id);
         if (groupOptional.isEmpty()) {
             throw new Exception();

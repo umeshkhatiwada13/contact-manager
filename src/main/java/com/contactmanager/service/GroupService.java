@@ -16,6 +16,6 @@ import java.util.UUID;
 public interface GroupService {
     List<GroupProjection> findAll();
 
-    Group findById(UUID id) throws Exception;
+    Group findById(String id) throws Exception;
 
 }

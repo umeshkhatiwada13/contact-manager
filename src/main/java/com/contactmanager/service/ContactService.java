@@ -16,7 +16,7 @@ public interface ContactService {
 
     void save(ContactPojo contactPojo) throws Exception;
 
-    Contact findById(UUID id) throws Exception;
+    Contact findById(String id) throws Exception;
 
-    void delete(UUID id) throws Exception;
+    void delete(String id) throws Exception;
 }

@@ -55,8 +55,8 @@ public class ContactController extends BaseController {
                 successResponse(success ? "Data fetched successfully" : "Something went Wrong", data));
     }
 
-    @DeleteMapping("delete")
-    public ResponseEntity<GlobalApiResponse> delete(@RequestParam UUID id) throws Exception {
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<GlobalApiResponse> delete(@PathVariable String id) throws Exception {
         log.info("Contact Controller : Delete Contact with id {}", id);
         boolean success = false;
         try {
@@ -70,7 +70,7 @@ public class ContactController extends BaseController {
     }
 
     @GetMapping("find-by-id/{id}")
-    public ResponseEntity<GlobalApiResponse> findById(@PathVariable UUID id) {
+    public ResponseEntity<GlobalApiResponse> findById(@PathVariable String id) {
         log.info("Contact Controller : Find by Id {} ",id);
         boolean success = false;
         Contact contact = null;
