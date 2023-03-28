@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,6 +42,7 @@ public class ContactController extends BaseController {
     }
 
     @GetMapping("find-all")
+    @RolesAllowed("admin")
     public ResponseEntity<GlobalApiResponse> findAll() {
         log.info("Contact Controller : Find all Contacts ");
         boolean success = false;
@@ -70,6 +72,7 @@ public class ContactController extends BaseController {
     }
 
     @GetMapping("find-by-id/{id}")
+    @RolesAllowed("user")
     public ResponseEntity<GlobalApiResponse> findById(@PathVariable String id) {
         log.info("Contact Controller : Find by Id {} ",id);
         boolean success = false;

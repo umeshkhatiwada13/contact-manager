@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +32,7 @@ public class GroupController extends BaseController {
     private final GroupService groupService;
 
     @GetMapping("find-all")
+    @RolesAllowed("admin")
     public ResponseEntity<GlobalApiResponse> findAll() {
         log.info("Group Controller : Find all Groups ");
         boolean success = false;
@@ -46,8 +48,9 @@ public class GroupController extends BaseController {
     }
 
     @GetMapping("find-by-id/{id}")
+    @RolesAllowed("user")
     public ResponseEntity<GlobalApiResponse> findById(@PathVariable String id) {
-        log.info("Contact Controller : Find by Id {} ",id);
+        log.info("Contact Controller : Find by Id {} ", id);
         boolean success = false;
         Group group = null;
         try {
